@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CareerConnect - Jobs & Internships</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        /* ================= LOGIN PAGE ================= */
+
+        #loginPage {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            padding: 20px;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 420px;
+            background: white;
+            padding: 40px;
+            border-radius: 18px;
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,0.25);
+        }
+
+        .login-logo {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            color: #4f46e5;
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 13px;
+
+            border: 1px solid #ddd;
+            border-radius: 8px;
+
+            outline: none;
+            font-size: 15px;
+        }
+
+        .input-group input:focus {
+            border-color: #4f46e5;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #4f46e5;
+            color: white;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background: #4338ca;
+        }
+
+        .demo-login {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 13px;
+            color: #777;
+        }
+
+        .error {
+            color: #dc2626;
+            text-align: center;
+            margin-top: 12px;
+            display: none;
+        }
+
+
+        /* ================= APP ================= */
+
+        #appPage {
+            display: none;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        nav {
+            height: 70px;
+
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 7%;
+
+            box-shadow:
+                0 2px 10px rgba(0,0,0,0.08);
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #4f46e5;
+        }
+
+        .logo span {
+            color: #111827;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-name {
+            color: #555;
+        }
+
+        .logout-btn {
+            border: none;
+            background: #ef4444;
+            color: white;
+
+            padding: 9px 16px;
+
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+
+            color: white;
+
+            text-align: center;
+
+            padding: 65px 20px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 17px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+
+        /* ================= SEARCH ================= */
+
+        .search-box {
+            max-width: 1000px;
+
+            margin: auto;
+
+            background: white;
+
+            padding: 10px;
+
+            border-radius: 10px;
+
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-box input,
+        .search-box select {
+
+            flex: 1;
+
+            border: none;
+            outline: none;
+
+            padding: 14px;
+
+            font-size: 15px;
+
+            color: #333;
+        }
+
+        .search-btn {
+
+            background: #111827;
+            color: white;
+
+            border: none;
+
+            padding: 0 25px;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .main {
+
+            max-width: 1200px;
+
+            margin: 40px auto;
+
+            padding: 0 20px;
+
+            display: grid;
+
+            grid-template-columns: 250px 1fr;
+
+            gap: 30px;
+        }
+
+
+        /* ================= FILTERS ================= */
+
+        .filters {
+
+            background: white;
+
+            padding: 22px;
+
+            border-radius: 12px;
+
+            height: fit-content;
+
+            box-shadow:
+                0 3px 15px rgba(0,0,0,0.05);
+        }
+
+        .filters h3 {
+            margin-bottom: 20px;
+        }
+
+        .filter-group {
+            margin-bottom: 20px;
+        }
+
+        .filter-group label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #555;
+
+            font-size: 14px;
+        }
+
+        .filter-group select {
+
+            width: 100%;
+
+            padding: 10px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 7px;
+
+            background: white;
+        }
+
+        .clear-btn {
+
+            width: 100%;
+
+            padding: 10px;
+
+            border: none;
+
+            border-radius: 7px;
+
+            background: #f3f4f6;
+
+            cursor: pointer;
+        }
+
+
+        /* ================= RESULTS HEADER ================= */
+
+        .results-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+        .results-header h2 {
+            font-size: 24px;
+        }
+
+        .result-count {
+            color: #777;
+            font-size: 14px;
+        }
+
+
+        /* ================= CARD ================= */
+
+        .job-card {
+
+            background: white;
+
+            padding: 22px;
+
+            border-radius: 12px;
+
+            margin-bottom: 18px;
+
+            box-shadow:
+                0 3px 15px rgba(0,0,0,0.06);
+
+            transition: 0.2s;
+        }
+
+        .job-card:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.10);
+        }
+
+        .card-top {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 15px;
+        }
+
+        .company-logo {
+
+            width: 55px;
+            height: 55px;
+
+            border-radius: 10px;
+
+            background: #eef2ff;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            color: #4f46e5;
+
+            font-size: 22px;
+            font-weight: bold;
+
+            flex-shrink: 0;
+        }
+
+        .job-info {
+            flex: 1;
+        }
+
+        .job-info h3 {
+            margin-bottom: 5px;
+            color: #111827;
+        }
+
+        .company {
+            color: #666;
+        }
+
+        .save-btn {
+
+            border: none;
+
+            background: transparent;
+
+            font-size: 25px;
+
+            cursor: pointer;
+
+            color: #555;
+        }
+
+        .save-btn.saved {
+            color: #ef4444;
+        }
+
+
+        /* ================= TAGS ================= */
+
+        .tags {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            margin: 16px 0;
+        }
+
+        .tag {
+
+            background: #f3f4f6;
+
+            padding: 7px 10px;
+
+            border-radius: 5px;
+
+            font-size: 13px;
+
+            color: #555;
+        }
+
+        .paid {
+
+            background: #dcfce7;
+
+            color: #15803d;
+        }
+
+        .job-type {
+
+            background: #ede9fe;
+
+            color: #6d28d9;
+        }
+
+
+        /* ================= DESCRIPTION ================= */
+
+        .description {
+
+            color: #666;
+
+            line-height: 1.5;
+
+            margin-bottom: 18px;
+        }
+
+
+        /* ================= CARD BOTTOM ================= */
+
+        .card-bottom {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+        .posted {
+
+            font-size: 13px;
+
+            color: #888;
+        }
+
+        .apply-btn {
+
+            border: none;
+
+            background: #4f46e5;
+
+            color: white;
+
+            padding: 11px 20px;
+
+            border-radius: 7px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .apply-btn:hover {
+            background: #4338ca;
+        }
+
+
+        /* ================= NO RESULTS ================= */
+
+        .no-results {
+
+            display: none;
+
+            background: white;
+
+            padding: 50px;
+
+            text-align: center;
+
+            border-radius: 12px;
+        }
+
+
+        /* ================= MODAL ================= */
+
+        .modal {
+
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(0,0,0,0.5);
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 20px;
+
+            z-index: 300;
+        }
+
+        .modal-content {
+
+            width: 100%;
+
+            max-width: 500px;
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 15px;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+
+            color: #666;
+
+            line-height: 1.6;
+
+            margin-bottom: 20px;
+        }
+
+        .close {
+
+            float: right;
+
+            border: none;
+
+            background: transparent;
+
+            font-size: 25px;
+
+            cursor: pointer;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 800px) {
+
+            .main {
+
+                grid-template-columns: 1fr;
+            }
+
+            .search-box {
+
+                flex-direction: column;
+            }
+
+            .search-btn {
+
+                padding: 14px;
+            }
+
+            .hero h1 {
+
+                font-size: 30px;
+            }
+
+            .nav-right .user-name {
+
+                display: none;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     LOGIN PAGE
+====================================================== -->
+
+<div id="loginPage">
+
+    <div class="login-box">
+
+        <div class="login-logo">
+            CareerConnect
+        </div>
+
+        <p class="login-subtitle">
+            Find Jobs & Internships
+        </p>
+
+
+        <form id="loginForm">
+
+            <div class="input-group">
+
+                <label>
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="login-btn"
+            >
+                Login
+            </button>
+
+
+            <p
+                class="error"
+                id="loginError"
+            >
+                Please enter valid login details.
+            </p>
+
+        </form>
+
+
+        <p class="demo-login">
+            Demo: use any email and password
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     APPLICATION PAGE
+====================================================== -->
+
+<div id="appPage">
+
+
+    <!-- NAVBAR -->
+
+    <nav>
+
+        <div class="logo">
+            Career<span>Connect</span>
+        </div>
+
+        <div class="nav-right">
+
+            <span
+                class="user-name"
+                id="userName"
+            >
+                Welcome
+            </span>
+
+            <button
+                class="logout-btn"
+                onclick="logout()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <h1>
+            Find Your Next Opportunity 🚀
+        </h1>
+
+        <p>
+            Search internships and jobs that match your skills and career goals.
+        </p>
+
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search by title, company or skill..."
+            >
+
+
+            <select id="locationSearch">
+
+                <option value="">
+                    Any Location
+                </option>
+
+                <option value="Mumbai">
+                    Mumbai
+                </option>
+
+                <option value="Delhi">
+                    Delhi
+                </option>
+
+                <option value="Bangalore">
+                    Bangalore
+                </option>
+
+                <option value="Hyderabad">
+                    Hyderabad
+                </option>
+
+                <option value="Remote">
+                    Remote
+                </option>
+
+            </select>
+
+
+            <button
+                class="search-btn"
+                onclick="filterJobs()"
+            >
+                Search
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- MAIN -->
+
+    <main
+        class="main"
+        id="jobsSection"
+    >
+
+
+        <!-- FILTERS -->
+
+        <aside class="filters">
+
+            <h3>
+                Filters
+            </h3>
+
+
+            <div class="filter-group">
+
+                <label>
+                    Opportunity Type
+                </label>
+
+                <select id="typeFilter">
+
+                    <option value="">
+                        Jobs & Internships
+                    </option>
+
+                    <option value="Internship">
+                        Internship
+                    </option>
+
+                    <option value="Job">
+                        Full-Time Job
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="filter-group">
+
+                <label>
+                    Category
+                </label>
+
+                <select id="categoryFilter">
+
+                    <option value="">
+                        All Categories
+                    </option>
+
+                    <option value="Technology">
+                        Technology
+                    </option>
+
+                    <option value="Data">
+                        Data Science
+                    </option>
+
+                    <option value="Design">
+                        Design
+                    </option>
+
+                    <option value="Marketing">
+                        Marketing
+                    </option>
+
+                    <option value="Finance">
+                        Finance
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="filter-group">
+
+                <label>
+                    Work Mode
+                </label>
+
+                <select id="modeFilter">
+
+                    <option value="">
+                        All Modes
+                    </option>
+
+                    <option value="Remote">
+                        Remote
+                    </option>
+
+                    <option value="Hybrid">
+                        Hybrid
+                    </option>
+
+                    <option value="On-site">
+                        On-site
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="filter-group">
+
+                <label>
+                    Paid / Unpaid
+                </label>
+
+                <select id="paidFilter">
+
+                    <option value="">
+                        All
+                    </option>
+
+                    <option value="paid">
+                        Paid
+                    </option>
+
+                    <option value="unpaid">
+                        Unpaid
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                class="clear-btn"
+                onclick="clearFilters()"
+            >
+                Clear Filters
+            </button>
+
+        </aside>
+
+
+        <!-- RESULTS -->
+
+        <section>
+
+            <div class="results-header">
+
+                <h2>
+                    Latest Opportunities
+                </h2>
+
+                <span
+                    class="result-count"
+                    id="resultCount"
+                >
+                    8 results
+                </span>
+
+            </div>
+
+
+            <div id="jobList"></div>
+
+
+            <div
+                class="no-results"
+                id="noResults"
+            >
+
+                <h3>
+                    No opportunities found 😔
+                </h3>
+
+                <p>
+                    Try changing your search or filters.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =====================================================
+     APPLY MODAL
+====================================================== -->
+
+<div
+    class="modal"
+    id="applyModal"
+>
+
+    <div class="modal-content">
+
+        <button
+            class="close"
+            onclick="closeModal()"
+        >
+            ×
+        </button>
+
+        <h2 id="modalTitle">
+            Apply
+        </h2>
+
+        <p id="modalDescription">
+            Application details.
+        </p>
+
+
+        <button
+            class="apply-btn"
+            onclick="confirmApplication()"
+        >
+            Continue Application
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+/* =====================================================
+   SAMPLE JOB + INTERNSHIP DATA
+====================================================== */
+
+const opportunities = [
+
+    {
+        title: "Frontend Developer Intern",
+        company: "TechNova Solutions",
+        location: "Mumbai",
+        category: "Technology",
+        mode: "Hybrid",
+        type: "Internship",
+        stipend: "₹15,000/month",
+        paid: true,
+        icon: "T",
+        description:
+            "Work with our development team to build responsive websites using HTML, CSS and JavaScript.",
+        posted: "2 days ago"
+    },
+
+
+    {
+        title: "Data Analyst Intern",
+        company: "DataWorks India",
+        location: "Bangalore",
+        category: "Data",
+        mode: "On-site",
+        type: "Internship",
+        stipend: "₹20,000/month",
+        paid: true,
+        icon: "D",
+        description:
+            "Analyze business data and create reports using SQL, Excel and data visualization tools.",
+        posted: "1 day ago"
+    },
+
+
+    {
+        title: "UI/UX Design Intern",
+        company: "Creative Labs",
+        location: "Remote",
+        category: "Design",
+        mode: "Remote",
+        type: "Internship",
+        stipend: "₹12,000/month",
+        paid: true,
+        icon: "C",
+        description:
+            "Create user-friendly interfaces and improve user experiences using Figma and design principles.",
+        posted: "3 days ago"
+    },
+
+
+    {
+        title: "Digital Marketing Intern",
+        company: "GrowthHub",
+        location: "Delhi",
+        category: "Marketing",
+        mode: "Hybrid",
+        type: "Internship",
+        stipend: "₹10,000/month",
+        paid: true,
+        icon: "G",
+        description:
+            "Assist with SEO, social media campaigns, content creation and digital marketing analytics.",
+        posted: "4 days ago"
+    },
+
+
+    {
+        title: "Java Developer",
+        company: "CodeCraft Technologies",
+        location: "Hyderabad",
+        category: "Technology",
+        mode: "On-site",
+        type: "Job",
+        stipend: "₹6 LPA",
+        paid: true,
+        icon: "C",
+        description:
+            "Develop backend applications using Java and Spring Boot while working with experienced developers.",
+        posted: "5 days ago"
+    },
+
+
+    {
+        title: "Financial Analyst",
+        company: "FinEdge",
+        location: "Mumbai",
+        category: "Finance",
+        mode: "Hybrid",
+        type: "Job",
+        stipend: "₹7 LPA",
+        paid: true,
+        icon: "F",
+        description:
+            "Analyze financial information and support business decisions through reports and forecasting.",
+        posted: "1 week ago"
+    },
+
+
+    {
+        title: "Python Developer Intern",
+        company: "AI Future Labs",
+        location: "Remote",
+        category: "Technology",
+        mode: "Remote",
+        type: "Internship",
+        stipend: "Unpaid",
+        paid: false,
+        icon: "A",
+        description:
+            "Learn Python development and contribute to automation and artificial intelligence projects.",
+        posted: "2 days ago"
+    },
+
+
+    {
+        title: "Marketing Executive",
+        company: "MarketPro",
+        location: "Delhi",
+        category: "Marketing",
+        mode: "On-site",
+        type: "Job",
+        stipend: "₹4.5 LPA",
+        paid: true,
+        icon: "M",
+        description:
+            "Develop marketing campaigns, analyze customer trends and support brand growth initiatives.",
+        posted: "6 days ago"
+    }
+
+];
+
+
+/* =====================================================
+   LOGIN
+====================================================== */
+
+document
+    .getElementById("loginForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        const email =
+            document.getElementById("email").value;
+
+
+        const password =
+            document.getElementById("password").value;
+
+
+        if (email && password) {
+
+            document
+                .getElementById("loginPage")
+                .style.display = "none";
+
+
+            document
+                .getElementById("appPage")
+                .style.display = "block";
+
+
+            document
+                .getElementById("userName")
+                .textContent =
+                "Welcome, " + email.split("@")[0];
+
+
+            displayOpportunities(opportunities);
+
+        }
+
+        else {
+
+            document
+                .getElementById("loginError")
+                .style.display = "block";
+
+        }
+
+    });
+
+
+/* =====================================================
+   DISPLAY CARDS
+====================================================== */
+
+function displayOpportunities(data) {
+
+    const list =
+        document.getElementById("jobList");
+
+
+    const noResults =
+        document.getElementById("noResults");
+
+
+    const count =
+        document.getElementById("resultCount");
+
+
+    list.innerHTML = "";
+
+
+    count.textContent =
+        data.length + " results";
+
+
+    if (data.length === 0) {
+
+        noResults.style.display = "block";
+
+        return;
+
+    }
+
+
+    noResults.style.display = "none";
+
+
+    data.forEach((job, index) => {
+
+        const card =
+            document.createElement("div");
+
+
+        card.className = "job-card";
+
+
+        card.innerHTML = `
+
+            <div class="card-top">
+
+                <div class="company-logo">
+                    ${job.icon}
+                </div>
+
+
+                <div class="job-info">
+
+                    <h3>
+                        ${job.title}
+                    </h3>
+
+                    <div class="company">
+                        ${job.company}
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="save-btn"
+                    onclick="toggleSave(this)"
+                >
+                    ♡
+                </button>
+
+            </div>
+
+
+            <div class="tags">
+
+                <span class="tag job-type">
+                    ${job.type}
+                </span>
+
+                <span class="tag">
+                    📍 ${job.location}
+                </span>
+
+                <span class="tag">
+                    💼 ${job.mode}
+                </span>
+
+                <span class="tag">
+                    🏷️ ${job.category}
+                </span>
+
+                <span class="tag ${job.paid ? 'paid' : ''}">
+                    💰 ${job.stipend}
+                </span>
+
+            </div>
+
+
+            <p class="description">
+                ${job.description}
+            </p>
+
+
+            <div class="card-bottom">
+
+                <span class="posted">
+                    Posted ${job.posted}
+                </span>
+
+
+                <button
+                    class="apply-btn"
+                    onclick="apply(${index})"
+                >
+                    Apply Now
+                </button>
+
+            </div>
+
+        `;
+
+
+        list.appendChild(card);
+
+    });
+
+}
+
+
+/* =====================================================
+   FILTER + SEARCH
+====================================================== */
+
+function filterJobs() {
+
+    const search =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+
+    const location =
+        document
+        .getElementById("locationSearch")
+        .value;
+
+
+    const type =
+        document
+        .getElementById("typeFilter")
+        .value;
+
+
+    const category =
+        document
+        .getElementById("categoryFilter")
+        .value;
+
+
+    const mode =
+        document
+        .getElementById("modeFilter")
+        .value;
+
+
+    const paid =
+        document
+        .getElementById("paidFilter")
+        .value;
+
+
+    const filtered =
+        opportunities.filter(job => {
+
+
+            const searchMatch =
+
+                job.title
+                    .toLowerCase()
+                    .includes(search)
+
+                ||
+
+                job.company
+                    .toLowerCase()
+                    .includes(search)
+
+                ||
+
+                job.category
+                    .toLowerCase()
+                    .includes(search);
+
+
+            const locationMatch =
+                location === "" ||
+                job.location === location;
+
+
+            const typeMatch =
+                type === "" ||
+                job.type === type;
+
+
+            const categoryMatch =
+                category === "" ||
+                job.category === category;
+
+
+            const modeMatch =
+                mode === "" ||
+                job.mode === mode;
+
+
+            const paidMatch =
+
+                paid === ""
+
+                ||
+
+                (paid === "paid" && job.paid)
+
+                ||
+
+                (paid === "unpaid" && !job.paid);
+
+
+            return (
+
+                searchMatch &&
+
+                locationMatch &&
+
+                typeMatch &&
+
+                categoryMatch &&
+
+                modeMatch &&
+
+                paidMatch
+
+            );
+
+        });
+
+
+    displayOpportunities(filtered);
+
+}
+
+
+/* =====================================================
+   FILTER EVENTS
+====================================================== */
+
+document
+    .getElementById("typeFilter")
+    .addEventListener(
+        "change",
+        filterJobs
+    );
+
+
+document
+    .getElementById("categoryFilter")
+    .addEventListener(
+        "change",
+        filterJobs
+    );
+
+
+document
+    .getElementById("modeFilter")
+    .addEventListener(
+        "change",
+        filterJobs
+    );
+
+
+document
+    .getElementById("paidFilter")
+    .addEventListener(
+        "change",
+        filterJobs
+    );
+
+
+document
+    .getElementById("searchInput")
+    .addEventListener(
+        "keyup",
+        function(event) {
+
+            if (event.key === "Enter") {
+
+                filterJobs();
+
+            }
+
+        }
+    );
+
+
+/* =====================================================
+   SAVE / FAVORITE
+====================================================== */
+
+function toggleSave(button) {
+
+    button.classList.toggle("saved");
+
+
+    if (button.classList.contains("saved")) {
+
+        button.textContent = "♥";
+
+    }
+
+    else {
+
+        button.textContent = "♡";
+
+    }
+
+}
+
+
+/* =====================================================
+   APPLY
+====================================================== */
+
+function apply(index) {
+
+    const job =
+        opportunities[index];
+
+
+    document
+        .getElementById("modalTitle")
+        .textContent =
+        "Apply for " + job.title;
+
+
+    document
+        .getElementById("modalDescription")
+        .textContent =
+
+        "You are applying for the " +
+        job.title +
+        " position at " +
+        job.company +
+        ". In the full application, this button can open an application form where the student submits their resume and details.";
+
+
+    document
+        .getElementById("applyModal")
+        .style.display = "flex";
+
+}
+
+
+function closeModal() {
+
+    document
+        .getElementById("applyModal")
+        .style.display = "none";
+
+}
+
+
+function confirmApplication() {
+
+    alert(
+        "Application started successfully! 🚀"
+    );
+
+
+    closeModal();
+
+}
+
+
+/* =====================================================
+   CLEAR FILTERS
+====================================================== */
+
+function clearFilters() {
+
+    document
+        .getElementById("searchInput")
+        .value = "";
+
+
+    document
+        .getElementById("locationSearch")
+        .value = "";
+
+
+    document
+        .getElementById("typeFilter")
+        .value = "";
+
+
+    document
+        .getElementById("categoryFilter")
+        .value = "";
+
+
+    document
+        .getElementById("modeFilter")
+        .value = "";
+
+
+    document
+        .getElementById("paidFilter")
+        .value = "";
+
+
+    displayOpportunities(opportunities);
+
+}
+
+
+/* =====================================================
+   LOGOUT
+====================================================== */
+
+function logout() {
+
+    document
+        .getElementById("appPage")
+        .style.display = "none";
+
+
+    document
+        .getElementById("loginPage")
+        .style.display = "flex";
+
+
+    document
+        .getElementById("password")
+        .value = "";
+
+}
+
+
+/* =====================================================
+   INITIAL
+====================================================== */
+
+displayOpportunities(opportunities);
+
+</script>
+
+</body>
+</html>
